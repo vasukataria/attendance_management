@@ -1,15 +1,18 @@
 <template>
 <div>
  <UserNav />
-
- </div>
+ 
+ <FrontFooter />
+</div>
 </template>
 <script>
 import UserNav from "@/components/UserNav.vue"
+import FrontFooter from '../components/FrontFooter'
    export default{
        name: "user",
        components:{
-           UserNav
+           UserNav,
+           FrontFooter
        }
    } 
 </script>

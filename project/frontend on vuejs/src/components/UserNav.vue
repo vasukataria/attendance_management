@@ -5,7 +5,7 @@
         <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible">
           <md-icon>menu</md-icon>
         </md-button>
-        <span class="md-title"><router-link to="/adminhomepage" style="color: white;">User</router-link></span>
+        <span class="md-title"><router-link to="/user" style="color: white;">User</router-link></span>
         <div class="md-toolbar-section-end">
         <md-button><router-link to="/logout" style="color: white;">Logout</router-link></md-button>
       </div>
@@ -22,6 +22,11 @@
           </div>
         </md-toolbar>
         <md-list>
+            <md-list-item>
+           
+          <span class="md-list-item-text"><router-link to="/">Home</router-link></span>
+          </md-list-item>
+
            <md-list-item>
            
           <span class="md-list-item-text"><router-link to="/studentdata">Student data</router-link></span>
@@ -33,7 +38,7 @@
           </md-list-item>
 
           <md-list-item>
-          <span class="md-list-item-text"><router-link to="/AdminPortfolio">Attendence</router-link>
+          <span class="md-list-item-text"><router-link to="/studentattendence">Attendence</router-link>
           </span>
           </md-list-item>
 
@@ -66,7 +71,7 @@ import 'vue-material/dist/theme/default.css'
 
 <style lang="scss" scoped>
   .md-app {
-    min-height: 700px;
+    min-height: 725px;
   }
   .md-drawer {
     width: 300px;

@@ -1,13 +1,35 @@
 <template>
 <div id="body">
-  <div id="container">
-    <button><router-link to="/">login</router-link></button>    
-    <form id="form" method="post" role="signupForm" class="signupForm" @submit="userForm" action="" enctype='multipart/form-data'>
-        <h2 id="h2">Create Account</h2>
+  <div id="container">    
+    <form id="form" method="post" role="signupForm" class="signupForm" @submit.prevent="userForm" action="" enctype='multipart/form-data'>
+        <h2 id="h2">Add student data</h2>
         <br>
         <div id="form-signin">
-            <label for="username">Username</label>
-            <input type="text" placeholder="Enter your username" id="username" name="uName" v-model="uName" />
+            <label for="name">name</label>
+            <input type="text" placeholder="Enter student name" id="name" name="name" v-model="name" />
+            <i id="fas fa-check-circle"></i>
+            <i id="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+        </div>
+        <div id="form-signin">
+            <label for="rollno">rollno.</label>
+            <input type="number" placeholder="Enter student roll no" id="rollno" name="rollno" v-model="rollno" />
+            <i id="fas fa-check-circle"></i>
+            <i id="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+        </div>
+
+        <div id="form-signin">
+            <label for="gender">Gender -M/F</label>
+            <input type="text" placeholder="Enter Gender of student" id="gender" name="gender" v-model="gender" />
+            <i id="fas fa-check-circle"></i>
+            <i id="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+        </div>
+       
+        <div id="form-signin">
+            <label for="age">Age</label>
+            <input type="number" placeholder="age" id="age" name="age" v-model="age"/>
             <i id="fas fa-check-circle"></i>
             <i id="fas fa-exclamation-circle"></i>
             <small>Error message</small>
@@ -19,55 +41,36 @@
             <i id="fas fa-exclamation-circle"></i>
             <small>Error message</small>
         </div>
-        <div id="form-signin">
-            <label for="password">Password</label>
-            <input type="password" placeholder="Password" id="password" name="pass"  v-model="pass" />
-            <i id="fas fa-check-circle"></i>
-            <i id="fas fa-exclamation-circle"></i>
-            <small>Error message</small>
-        </div>
-        <div id="form-signin">
-            <label for="username">Password check</label>
-            <input type="password" placeholder="Password two" id="password2"/>
-            <i id="fas fa-check-circle"></i>
-            <i id="fas fa-exclamation-circle"></i>
-            <small>Error message</small>
-        </div>
         <button type="submit">Submit</button>
     </form>
 </div>
 </div>
 
 </template>
-<style>
-@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500&display=swap');
 
-@import './signup.css';
-
-</style>
 <script>
-//import axios from 'axios'
 import Vue from 'vue'
 export default {
   name: 'Signup',
   data(){
     return{
-      uName: null,
+      name: null,
       email: null,
-      pass: null,
+      age: null,
+      gender: null,
+      rollno:null
 
     }
   },
   
 mounted(){
    this.userForm();  
-//var self= this;
 const form = document.getElementById('form');
-const username = document.getElementById('username');
+const name = document.getElementById('name');
 const email = document.getElementById('email');
-const password = document.getElementById('password');
-const password2 = document.getElementById('password2');
+const age = document.getElementById('age');
+const gender = document.getElementById('gender');
+const rollno = document.getElementById('rollno');
 
 form.addEventListener('submit', e => {
     e.preventDefault();
@@ -75,16 +78,16 @@ form.addEventListener('submit', e => {
 });
 
 function checkInputs() {
-    // trim to remove the whitespaces
-    const usernameValue = username.value.trim();
+    const nameValue = name.value.trim();
     const emailValue = email.value.trim();
-    const passwordValue = password.value.trim();
-    const password2Value = password2.value.trim();
+    const ageValue = age.value.trim();
+    const genderValue = gender.value.trim();
+    const rollnoValue = rollno.value.trim();
     
-    if(usernameValue === '') {
-        setErrorFor(username, 'Username cannot be blank');
+    if(nameValue === '') {
+        setErrorFor(name, 'name cannot be blank');
     } else {
-        setSuccessFor(username);
+        setSuccessFor(name);
     }
     
     if(emailValue === '') {
@@ -95,18 +98,20 @@ function checkInputs() {
         setSuccessFor(email);
     }
     
-    if(passwordValue === '') {
-        setErrorFor(password, 'Password cannot be blank');
+    if(ageValue === '') {
+        setErrorFor(age, 'age cannot be blank');
     } else {
-        setSuccessFor(password);
+        setSuccessFor(age);
     }
-    
-    if(password2Value === '') {
-        setErrorFor(password2, 'Password2 cannot be blank');
-    } else if(passwordValue !== password2Value) {
-        setErrorFor(password2, 'Passwords does not match');
-    } else{
-        setSuccessFor(password2);
+     if(genderValue === '') {
+        setErrorFor(gender, 'gender cannot be blank');
+    } else {
+        setSuccessFor(gender);
+    }
+     if(rollnoValue === '') {
+        setErrorFor(rollno, 'age cannot be blank');
+    } else {
+        setSuccessFor(rollno);
     }
 
 }
@@ -126,17 +131,18 @@ function setSuccessFor(input) {
 function isEmail(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);}//eslint-disable-line      
       },
-
-
 methods:{
   userForm:function () {
-    if (this.uName && this.email && this.pass) {
-        fetch("http://localhost/attendence/signup.php",{
+    if (this.name && this.email && this.rollno && this.gender && this.age) {
+        fetch("http://localhost/attendence/studentdata.php?crud=create",
+        {
             method: "POST", 
             body: JSON.stringify({
-                      uName : this.uName,
+                      name : this.name,
                       email : this.email,
-                      pass  : this.pass,
+                      rollno  : this.rollno,
+                      gender : this.gender,
+                      age : this.age
                     }),
           }).then(request => { 
             //console.log(request);
@@ -146,6 +152,7 @@ methods:{
 
                     this.userValidation()
                 } else if (request.status === 200){
+                  console.log(request);
                 this.signupSuccessful()
                 }else{
                     this.signupFailed()
@@ -170,6 +177,7 @@ userValidation(){
     this.error=''
 }
 }
+
 }
 
 

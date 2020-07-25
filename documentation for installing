@@ -1,0 +1,47 @@
+
+
+project setup
+
+
+Backend setup
+Xampp:-(for ubuntu)
+
+Step 1: Download XAMPP to your system.
+Step 2:Make the installation package executable:-
+	Move to the Downloads folder by using the following command:
+	$ cd /home/[username]/Downloads
+The installation package you downloaded needs to be made executable before it can be used further. Run the following command for this purpose:
+	$ chmod 755 [package name]
+	$ chmod 755 xampp-linux-x64-7.2.10-0-installer.run
+
+
+Step 3: Confirm execute permission
+It is important to verify if the package can be executed by the current user. The execute permission can be checked through the following command:
+	$ ls -l xampp-linux-x64-7.2.10-0-installer.run
+
+Step 4: Launch the Setup Wizard
+	sudo ./xampp-linux-7.2.10-0-installer.run
+
+Step 5: Work through the graphical setup wizard
+	press the button next and select the core files and developer files.
+
+Step 6: Launch XAMPP through the Terminal
+	$ sudo /opt/lampp/lampp start
+
+note:- Now please copy backend folder in opt/lampp/htdocs.
+
+
+
+Frontend setup
+Vue.js:-
+
+Step 1(open cmd)
+npm install -g vue-cli
+This command will install vue-cli globally. 
+
+Step 2(put vue project into some folder)
+cd foldername
+Change directory to your project folder
+
+Step 3(now to run  project)
+npm run serve

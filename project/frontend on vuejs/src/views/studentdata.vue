@@ -31,7 +31,7 @@
 					<th>Action</th>
 				</thead>
 				<tbody>
-					<tr v-for="video in videos"  v-bind:key="video.id">
+					<tr v-for="video in videos" :key="video.id">
 						<td><img :src="'data:image.png;base64,' + video.img" alt=""></td>
 						<td>{{ video.name }}</td>
 						<td>{{ video.rollno }}</td>
@@ -137,7 +137,7 @@ export default{
 	methods:{
 		getAllMembers: function(){
 			var self = this;
-			axios.get('')
+			axios.get('http://localhost/attendence/studentdata.php')
 				.then(function(response){
 					//console.log(response);
 					if(response.data.error){
@@ -151,9 +151,9 @@ export default{
 		updateMember(){
 			var self = this;
 			var memForm = self.toFormData(self.clickVideo);
-			axios.post('', memForm)
+			axios.post('http://localhost/attendence/studentdata.php?crud=update', memForm)
 				.then(function(response){
-					console.log(response);
+					//console.log(response);
 					self.clickVideo = {};
 					if(response.data.error){
 						self.errorMessage = response.data.message;
@@ -168,7 +168,7 @@ export default{
 		deleteMember(){
 			var self = this;
 			var memForm = self.toFormData(self.clickVideo);
-			axios.post('', memForm)
+			axios.post('http://localhost/attendence/studentdata.php?crud=delete', memForm)
 				.then(function(response){
 					//console.log(response);
 					self.clickVideo = {};

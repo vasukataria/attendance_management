@@ -1,4 +1,5 @@
 <template>
+  <div>
 <div id="body">
   <div id="container">
    
@@ -23,10 +24,16 @@
     </form>
 </div>
 </div>
+<FrontFooter />
+</div>
 </template>
 <script>
+import FrontFooter from '../components/FrontFooter'
 export default {
   name: 'login',
+  components:{
+        FrontFooter
+    },
   data () {
     return {
       uName: "",
@@ -86,7 +93,7 @@ function setSuccessFor(input) {
   methods: {
   checkCurrentLogin () {
     if (localStorage.token) {
-      this.$router.replace('')
+      this.$router.replace('/user')
     }
   },
     login () {
@@ -114,13 +121,13 @@ function setSuccessFor(input) {
      localStorage.user  = req.data.user
      
       this.error = false   
-      this.$router.replace('/')
+      this.$router.replace('/user')
       //console.log(localStorage)
      },
 
     loginFailed () {
     this.error = 'Login failed!'
-    delete localStorage.token
+    //delete localStorage.token
     },
   }
 }

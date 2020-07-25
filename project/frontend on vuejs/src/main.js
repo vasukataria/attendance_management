@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import VueToast from 'vue-toast-notification';
 import VueAxios from 'vue-axios'
-
+//import './assets/css/font-awesome.min.css'
 
 
 import VueMaterial from 'vue-material'
